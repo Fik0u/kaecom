@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { getProducts } from "./services/productService";
+import Navbar from "./components/Navbar";
 import Checkout from "./pages/Checkout";
+import ProductCard from "./components/ProductCard";
+import Cart from "./components/Cart";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -53,7 +56,7 @@ const decreaseQuantity = (productId) => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>E-commerce MERN 🚀</h1>
+      <Navbar cart={cart} />
 
       {/* PRODUCTS */}
       <div
@@ -65,58 +68,24 @@ const decreaseQuantity = (productId) => {
         }}
       >
         {products.map((product) => (
-          <div
+          <ProductCard
             key={product._id}
-            style={{
-              border: "1px solid #ccc",
-              padding: "10px",
-              borderRadius: "8px",
-            }}
-          >
-            <h3>{product.name}</h3>
-            <p>{product.price} DA</p>
-            <p>{product.category}</p>
-
-            <button onClick={() => addToCart(product)}>
-              Ajouter au panier
-            </button>
-          </div>
+            product={product}
+            addToCart={addToCart}
+          />
         ))}
       </div>
 
       {/* CART */}
-      <h2 style={{ marginTop: "40px" }}>Panier 🛒</h2>
+      <Cart
+        cart={cart}
+        addToCart={addToCart}
+        decreaseQuantity={decreaseQuantity}
+        removeFromCart={removeFromCart}
+        setCart={setCart}
+      />
 
-{cart.map((item, index) => (
-  <div key={index}>
-    <p>
-      {item.name} - {item.price} DA x {item.quantity}
-    </p>
-
-    <button onClick={() => decreaseQuantity(item._id)}>
-      -
-    </button>
-
-    <button onClick={() => addToCart(item)}>
-      +
-    </button>
-
-    <button onClick={() => removeFromCart(item._id)}>
-      Supprimer
-    </button>
-  </div>
-))}
-      <h3>
-  Total :
-  {cart.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  )}{" "}
-  DA
-</h3>
-<button onClick={() => setCart([])}>
-  Vider le panier
-</button>
+      {/* CHECKOUT */}
 
       <Checkout cart={cart} setCart={setCart} />
     </div>
