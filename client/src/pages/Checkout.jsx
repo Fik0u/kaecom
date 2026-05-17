@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
 
-
 function Checkout({ cart, setCart }) {
   const [form, setForm] = useState({
     customerName: "",
@@ -17,36 +16,30 @@ function Checkout({ cart, setCart }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const orderData = {
-        ...form,
-items: cart.map((item) => ({
-  productId: item._id,
-  quantity: item.quantity,
-})),
+    const orderData = {
+      ...form,
+      items: cart.map((item) => ({
+        productId: item._id,
+        quantity: item.quantity,
+      })),
+      totalPrice: cart.reduce(
+        (acc, item) => acc + item.price * item.quantity,
+        0
+      ),
+    };
 
-totalPrice: cart.reduce(
-  (acc, item) => acc + item.price * item.quantity,
-  0
-),
-      };
+    await axios.post(
+      "http://localhost:1999/api/orders",
+      orderData
+    );
 
-      const res = await axios.post(
-        "http://localhost:1999/api/orders/create",
-        orderData
-      );
-
-      console.log("Order success:", res.data);
-      alert("Commande envoyée !");
-      setCart([]);
-    } catch (err) {
-      console.log(err);
-    }
+    alert("Commande envoyée !");
+    setCart([]);
   };
 
   return (
     <div style={{ padding: "20px" }}>
-      <h2>Checkout 🧾</h2>
+      <h1>Checkout 🧾</h1>
 
       <form onSubmit={handleSubmit}>
         <input
@@ -54,28 +47,24 @@ totalPrice: cart.reduce(
           placeholder="Nom"
           onChange={handleChange}
         />
-        <br />
 
         <input
           name="email"
           placeholder="Email"
           onChange={handleChange}
         />
-        <br />
 
         <input
           name="phone"
           placeholder="Téléphone"
           onChange={handleChange}
         />
-        <br />
 
         <input
           name="address"
           placeholder="Adresse"
           onChange={handleChange}
         />
-        <br />
 
         <button type="submit">Commander</button>
       </form>

@@ -3,16 +3,13 @@ function ProductCard({ product, addToCart }) {
     <div
       style={{
         border: "1px solid #ddd",
-        borderRadius: "10px",
         padding: "15px",
-        backgroundColor: "white",
+        borderRadius: "10px",
       }}
     >
       <h3>{product.name}</h3>
-
+      <p>{product.price} DA</p>
       <p>{product.category}</p>
-
-      <h4>{product.price} DA</h4>
 
       <button onClick={() => addToCart(product)}>
         Ajouter au panier

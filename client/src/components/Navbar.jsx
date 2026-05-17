@@ -1,14 +1,19 @@
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar({ cart }) {
   return (
     <nav className="navbar">
-      <h1 className="logo">KAECOM 🛍️</h1>
+      <Link to="/" className="logo">
+        KAECOM 🛍️
+      </Link>
 
       <div className="nav-right">
-        <p className="cart-count">
+        <Link to="/cart" className="cart-count">
           Panier ({cart.length})
-        </p>
+        </Link>
+
+        <Link to="/checkout">Checkout</Link>
       </div>
     </nav>
   );
