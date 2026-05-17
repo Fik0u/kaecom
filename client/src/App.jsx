@@ -118,7 +118,7 @@ const decreaseQuantity = (productId) => {
   Vider le panier
 </button>
 
-      <Checkout />
+      <Checkout cart={cart} setCart={setCart} />
     </div>
   );
 }
