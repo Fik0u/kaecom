@@ -1,19 +1,29 @@
+import "./ProductCard.css";
+
 function ProductCard({ product, addToCart }) {
   return (
-    <div
-      style={{
-        border: "1px solid #ddd",
-        padding: "15px",
-        borderRadius: "10px",
-      }}
-    >
-      <h3>{product.name}</h3>
-      <p>{product.price} DA</p>
-      <p>{product.category}</p>
+    <div className="product-card">
+      
+      <div className="product-image">
+        <img
+          src="https://via.placeholder.com/150"
+          alt={product.name}
+        />
+      </div>
 
-      <button onClick={() => addToCart(product)}>
-        Ajouter au panier
-      </button>
+      <div className="product-info">
+        <h3>{product.name}</h3>
+        <p className="category">{product.category}</p>
+
+        <div className="price">
+          {product.price} DA
+        </div>
+
+        <button onClick={() => addToCart(product)}>
+          Ajouter au panier
+        </button>
+      </div>
+
     </div>
   );
 }

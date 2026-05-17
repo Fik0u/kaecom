@@ -4,16 +4,20 @@ import "./Navbar.css";
 function Navbar({ cart }) {
   return (
     <nav className="navbar">
-      <Link to="/" className="logo">
-        KAECOM 🛍️
-      </Link>
+      <div className="nav-container container">
 
-      <div className="nav-right">
-        <Link to="/cart" className="cart-count">
-          Panier ({cart.length})
+        <Link to="/" className="logo">
+          KAECOM 🛍️
         </Link>
 
-        <Link to="/checkout">Checkout</Link>
+        <div className="nav-links">
+          <Link to="/">Produits</Link>
+          <Link to="/cart">
+            Panier <span className="badge">{cart.length}</span>
+          </Link>
+          <Link to="/checkout">Checkout</Link>
+        </div>
+
       </div>
     </nav>
   );

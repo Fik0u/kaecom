@@ -15,13 +15,13 @@ function Home({ addToCart }) {
   }, []);
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="container">
       <h1>Produits 🛍️</h1>
 
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
+          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
           gap: "20px",
         }}
       >

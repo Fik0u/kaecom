@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import "./Checkout.css";
 
 function Checkout({ cart, setCart }) {
   const [form, setForm] = useState({
@@ -38,36 +39,57 @@ function Checkout({ cart, setCart }) {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="checkout-page container">
+
       <h1>Checkout 🧾</h1>
 
-      <form onSubmit={handleSubmit}>
+      <form className="checkout-form" onSubmit={handleSubmit}>
+
         <input
           name="customerName"
-          placeholder="Nom"
+          placeholder="Nom complet"
           onChange={handleChange}
+          required
         />
 
         <input
           name="email"
           placeholder="Email"
           onChange={handleChange}
+          required
         />
 
         <input
           name="phone"
           placeholder="Téléphone"
           onChange={handleChange}
+          required
         />
 
         <input
           name="address"
-          placeholder="Adresse"
+          placeholder="Adresse de livraison"
           onChange={handleChange}
+          required
         />
 
-        <button type="submit">Commander</button>
+        <div className="summary">
+          Total :
+          <strong>
+            {cart.reduce(
+              (acc, item) =>
+                acc + item.price * item.quantity,
+              0
+            )} DA
+          </strong>
+        </div>
+
+        <button type="submit">
+          Confirmer la commande
+        </button>
+
       </form>
+
     </div>
   );
 }

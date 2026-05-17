@@ -1,3 +1,5 @@
+import "./CartPage.css";
+
 function CartPage({
   cart,
   addToCart,
@@ -6,50 +8,74 @@ function CartPage({
   setCart,
 }) {
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Panier 🛒</h1>
+    <div className="container cart-page">
 
-      {cart.length === 0 && <p>Panier vide</p>}
+      <h1>Mon Panier 🛒</h1>
 
-      {cart.map((item) => (
-        <div
-          key={item._id}
-          style={{
-            border: "1px solid #ccc",
-            marginBottom: "10px",
-            padding: "10px",
-          }}
-        >
-          <h3>{item.name}</h3>
+      {cart.length === 0 ? (
+        <p className="empty">Ton panier est vide</p>
+      ) : (
+        <div className="cart-layout">
 
-          <p>
-            {item.price} DA x {item.quantity}
-          </p>
+          {/* LEFT - ITEMS */}
+          <div className="cart-items">
 
-          <button onClick={() => decreaseQuantity(item._id)}>
-            -
-          </button>
+            {cart.map((item) => (
+              <div key={item._id} className="cart-card">
 
-          <button onClick={() => addToCart(item)}>+</button>
+                <div>
+                  <h3>{item.name}</h3>
+                  <p>{item.price} DA</p>
+                  <p>Quantité : {item.quantity}</p>
+                </div>
 
-          <button onClick={() => removeFromCart(item._id)}>
-            Supprimer
-          </button>
+                <div className="cart-actions">
+                  <button onClick={() => decreaseQuantity(item._id)}>
+                    -
+                  </button>
+
+                  <button onClick={() => addToCart(item)}>
+                    +
+                  </button>
+
+                  <button
+                    className="danger"
+                    onClick={() => removeFromCart(item._id)}
+                  >
+                    Supprimer
+                  </button>
+                </div>
+
+              </div>
+            ))}
+
+          </div>
+
+          {/* RIGHT - SUMMARY */}
+          <div className="cart-summary">
+
+            <h2>Résumé</h2>
+
+            <p>
+              Total :
+              <strong>
+                {cart.reduce(
+                  (acc, item) =>
+                    acc + item.price * item.quantity,
+                  0
+                )} DA
+              </strong>
+            </p>
+
+            <button onClick={() => setCart([])}>
+              Vider le panier
+            </button>
+
+          </div>
+
         </div>
-      ))}
+      )}
 
-      <h2>
-        Total :
-        {cart.reduce(
-          (acc, item) => acc + item.price * item.quantity,
-          0
-        )}{" "}
-        DA
-      </h2>
-
-      <button onClick={() => setCart([])}>
-        Vider le panier
-      </button>
     </div>
   );
 }
