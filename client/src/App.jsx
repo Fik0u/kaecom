@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import Navbar from "./components/Navbar";
-
 import Home from "./pages/Home";
 import CartPage from "./pages/CartPage";
 import Checkout from "./pages/Checkout";
+import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -72,6 +71,12 @@ function App() {
           path="/checkout"
           element={<Checkout cart={cart} setCart={setCart} />}
         />
+
+        <Route
+          path="/admin"
+          element={<AdminDashboard />}
+        />
+        
       </Routes>
     </BrowserRouter>
   );

@@ -26,9 +26,28 @@ exports.createOrder = async (req, res) => {
 // Get All Orders
 exports.getOrders = async (req, res) => {
     try {
-        const orders = await Order.find().sort({ createdAt: -1 });
+        const orders = await Order.find()
+        .populate('items.productId', 'name price')
+        .sort({ createdAt: -1 });
         res.status(200).json({ message: "Orders retrieved successfully!", orders });
     } catch (error) {
         res.status(400).json({ message: "Error retrieving orders", error });
+    }
+};
+
+// Update Order Status (Admin)
+exports.updateOrderStatus = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { status } = req.body;
+
+        const order = await Order.findByIdAndUpdate(id, { status }, { new: true });
+        if (!order) {
+            return res.status(404).json({ message: "Order not found" });
+        }
+
+        res.status(200).json({ message: "Order status updated successfully!", order });
+    } catch (error) {
+        res.status(400).json({ message: "Error updating order status", error });
     }
 };
