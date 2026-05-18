@@ -54,6 +54,8 @@ function App() {
           element={<Home addToCart={addToCart} />}
         />
 
+        <Route path="/category/:name" element={<Home />} />
+
         <Route
           path="/cart"
           element={

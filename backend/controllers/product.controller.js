@@ -15,7 +15,14 @@ exports.addProduct = async (req, res) => {
 // Get Products 
 exports.getProducts = async (req, res) => {
     try {
-        const prodsList = await Product.find();
+            const { category } = req.query;
+
+    let filter = {};
+
+    if (category) {
+        filter.category = category;
+    }
+        const prodsList = await Product.find(filter);
         res.status(200).json({ msg: "Products fetched successfully", prodsList });
     } catch (error) {
         res.status(400).json({ msg: "Error fetching products", error });

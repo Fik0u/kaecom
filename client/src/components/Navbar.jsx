@@ -4,6 +4,7 @@ import "./Navbar.css";
 function Navbar({ cart }) {
   return (
     <nav className="navbar">
+
       <div className="nav-container container">
 
         <Link to="/" className="logo">
@@ -11,14 +12,29 @@ function Navbar({ cart }) {
         </Link>
 
         <div className="nav-links">
-          <Link to="/">Produits</Link>
-          <Link to="/cart">
-            Panier <span className="badge">{cart.length}</span>
+
+          <Link to="/">Tous</Link>
+
+          <Link to="/category/homme">
+            Homme
           </Link>
-          <Link to="/checkout">Checkout</Link>
+
+          <Link to="/category/femme">
+            Femme
+          </Link>
+
+          <Link to="/category/chaussures">
+            Chaussures
+          </Link>
+
+          <Link to="/cart">
+            Panier ({cart.length})
+          </Link>
+
         </div>
 
       </div>
+
     </nav>
   );
 }

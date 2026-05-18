@@ -1,4 +1,5 @@
 import "./CartPage.css";
+import { useNavigate } from "react-router-dom";
 
 function CartPage({
   cart,
@@ -7,6 +8,7 @@ function CartPage({
   removeFromCart,
   setCart,
 }) {
+  const navigate = useNavigate();
   return (
     <div className="container cart-page">
 
@@ -70,6 +72,15 @@ function CartPage({
             <button onClick={() => setCart([])}>
               Vider le panier
             </button>
+            <button
+  onClick={() => navigate("/checkout")}
+  style={{
+    marginTop: "20px",
+    backgroundColor: "#22c55e",
+  }}
+>
+  Passer au checkout
+</button>
 
           </div>
 
