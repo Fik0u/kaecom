@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 import "./Checkout.css";
+import { useNavigate } from "react-router-dom";
 
 function Checkout({ cart, setCart }) {
   const [form, setForm] = useState({
@@ -10,12 +12,19 @@ function Checkout({ cart, setCart }) {
     address: "",
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (cart.length === 0) {
+  toast.error("Votre panier est vide 🛒");
+  return;
+}
 
     const orderData = {
       ...form,
@@ -29,13 +38,19 @@ function Checkout({ cart, setCart }) {
       ),
     };
 
-    await axios.post(
-      "http://localhost:1999/api/orders",
-      orderData
-    );
+ try {
+    await axios.post("http://localhost:1999/api/orders/create", orderData);
 
-    alert("Commande envoyée !");
     setCart([]);
+
+    toast.success("Commande confirmée 🎉");
+
+    navigate("/");
+
+  } catch (error) {
+    console.error("Order error:", error);
+    toast.error("Erreur lors de la commande ❌");
+  }
   };
 
   return (

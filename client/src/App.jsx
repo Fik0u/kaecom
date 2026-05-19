@@ -7,6 +7,9 @@ import CartPage from "./pages/CartPage";
 import Checkout from "./pages/Checkout";
 import AdminDashboard from "./pages/AdminDashboard";
 import { getProducts } from "./services/productService";
+import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -27,6 +30,7 @@ function App() {
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
     }
+    toast.success("Produit ajouté au panier 🛒");
   };
 
   // DECREASE
@@ -45,6 +49,7 @@ function App() {
   // REMOVE
   const removeFromCart = (id) => {
     setCart(cart.filter((item) => item._id !== id));
+    toast.error("Produit supprimé du panier ❌");
   };
 
   useEffect(() => {
@@ -98,6 +103,14 @@ function App() {
         />
         
       </Routes>
+
+      <ToastContainer
+  position="top-right"
+  autoClose={2000}
+  hideProgressBar={false}
+  closeOnClick
+  pauseOnHover
+/>
     </BrowserRouter>
   );
 }
