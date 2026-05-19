@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
+import ProductDetails from "./pages/ProductDetails";
 import CartPage from "./pages/CartPage";
 import Checkout from "./pages/Checkout";
 import AdminDashboard from "./pages/AdminDashboard";
+import { getProducts } from "./services/productService";
 
 function App() {
   const [cart, setCart] = useState([]);
+  const [products, setProducts] = useState([]);
 
   // ADD TO CART
   const addToCart = (product) => {
@@ -44,9 +47,19 @@ function App() {
     setCart(cart.filter((item) => item._id !== id));
   };
 
+  useEffect(() => {
+  const fetchProducts = async () => {
+    const res = await getProducts();
+
+    setProducts(res.data.prodsList);
+  };
+
+  fetchProducts();
+}, []);
+
   return (
     <BrowserRouter>
-      <Navbar cart={cart} />
+      <Navbar cart={cart} products={products} />
 
       <Routes>
         <Route
@@ -54,7 +67,12 @@ function App() {
           element={<Home addToCart={addToCart} />}
         />
 
-        <Route path="/category/:name" element={<Home />} />
+        <Route path="/category/:name" element={<Home addToCart={addToCart} />} />
+
+        <Route
+  path="/product/:id"
+  element={<ProductDetails addToCart={addToCart} />}
+/>
 
         <Route
           path="/cart"

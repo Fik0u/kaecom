@@ -16,7 +16,7 @@ function Home({ addToCart }) {
       if (name) {
         allProducts = allProducts.filter(
           (p) =>
-            p.category.toLowerCase() === name.toLowerCase()
+            p.category?.trim().toLowerCase() === name?.trim().toLowerCase()
         );
       }
 
