@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import "./ProductCard.css";
 
-function ProductCard({ product, addToCart }) {
+function ProductCard({ product }) {
+
   return (
     <Link
   to={`/product/${product._id}`}
@@ -10,11 +12,15 @@ function ProductCard({ product, addToCart }) {
     color: "inherit",
   }}
 >
-    <div className="product-card">
+    <motion.div className="product-card"
+      whileHover={{ scale: 1.03 }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}>
       
       <div className="product-image">
         <img
-          src="https://via.placeholder.com/150"
+          src= { product.imageUrl || "https://via.placeholder.com/300" }
           alt={product.name}
         />
       </div>
@@ -26,13 +32,10 @@ function ProductCard({ product, addToCart }) {
         <div className="price">
           {product.price} DA
         </div>
-
-        <button onClick={() => addToCart(product)}>
-          Ajouter au panier
-        </button>
+        <button> View Details </button>
       </div>
 
-    </div>
+    </motion.div>
     </Link>
   );
 }

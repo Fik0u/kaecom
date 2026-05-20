@@ -6,7 +6,19 @@
 }
 
 body {
-  background-color: #f5f7fb;
+  margin: 0;
+
+  font-family: Arial, sans-serif;
+
+  background:
+    linear-gradient(
+      to bottom right,
+      #f9fafb,
+      #eef2ff
+    );
+
+  min-height: 100vh;
+
   color: #111827;
 }
 

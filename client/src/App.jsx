@@ -7,6 +7,7 @@ import CartPage from "./pages/CartPage";
 import Checkout from "./pages/Checkout";
 import AdminDashboard from "./pages/AdminDashboard";
 import { getProducts } from "./services/productService";
+import Footer from "./components/Footer";
 import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -103,6 +104,8 @@ function App() {
         />
         
       </Routes>
+      
+      <Footer />
 
       <ToastContainer
   position="top-right"

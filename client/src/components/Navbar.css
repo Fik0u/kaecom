@@ -1,9 +1,10 @@
 .navbar {
-  background: white;
-  border-bottom: 1px solid #e5e7eb;
+  background: rgba(17, 24, 39, 0.8);;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
+  backdrop-filter: blur(12px);
 }
 
 .nav-container {
@@ -14,10 +15,13 @@
 }
 
 .logo {
-  font-size: 22px;
-  font-weight: bold;
-  color: #111827;
+  color: white;
+
   text-decoration: none;
+
+  font-size: 1.5rem;
+
+  font-weight: bold;
 }
 
 .nav-links {
@@ -27,14 +31,39 @@
 }
 
 .nav-links a {
+  color: white;
+
   text-decoration: none;
-  color: #374151;
+
   font-weight: 500;
-  transition: 0.2s;
+
+  transition: 0.3s;
+
+  position: relative;
 }
 
 .nav-links a:hover {
-  color: #2563eb;
+  color: #c4b5fd;
+}
+
+.nav-links a::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -5px;
+
+  width: 0;
+  height: 2px;
+
+  background: #a78bfa;
+
+  transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
 }
 
 .badge {
