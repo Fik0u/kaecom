@@ -12,6 +12,7 @@ function AdminDashboard() {
   name: "",
   price: "",
   category: "",
+  imageUrl: "",
 });
   const [editId, setEditId] = useState(null);
 
@@ -106,6 +107,7 @@ const logout = () => {
       name: "",
       price: "",
       category: "",
+      imageUrl: "",
     });
 
   } catch (error) {
@@ -118,6 +120,7 @@ const logout = () => {
     name: product.name,
     price: product.price,
     category: product.category,
+    imageUrl: product.imageUrl,
   });
 
   setEditId(product._id);
@@ -137,6 +140,7 @@ const logout = () => {
       name: "",
       price: "",
       category: "",
+      imageUrl: "",
     });
 
     setEditId(null);
@@ -240,6 +244,13 @@ const logout = () => {
     name="category"
     placeholder="Catégorie"
     value={form.category}
+    onChange={handleChange}
+  />
+  <input
+    type="text"
+    name="imageUrl"
+    placeholder="URL de l'image"
+    value={form.imageUrl}
     onChange={handleChange}
   />
 
