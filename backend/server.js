@@ -18,7 +18,7 @@ connectDB();
 // Routes
 app.use('/api/products', require('./routes/product.route'));
 app.use('/api/orders', require('./routes/order.route'));
-
+app.use('/api/admin', require('./routes/admin.route'));
 
 const PORT = process.env.PORT || 3000;
 

@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import "./AdminDashboard.css";
 
 function AdminDashboard() {
+  const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   const [products, setProducts] = useState([]);
   const [form, setForm] = useState({
@@ -44,6 +47,14 @@ function AdminDashboard() {
     ...form,
     [e.target.name]: e.target.value,
   });
+};
+
+const logout = () => {
+  localStorage.removeItem("token");
+
+  toast.info("Déconnexion réussie 👋");
+
+  navigate("/admin-login");
 };
 
 
@@ -140,6 +151,9 @@ function AdminDashboard() {
     <div className="admin-page container">
 
       <h1>Admin Dashboard 📦</h1>
+      <button className="logout-btn" onClick={logout}>
+        Logout
+      </button>
 
       <div className="orders-list">
 

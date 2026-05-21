@@ -1,4 +1,5 @@
 const express = require('express');
+const auth = require('../middleware/auth');
 const { getProducts, addProduct, getOneProduct, updateProduct, deleteProduct } = require('../controllers/product.controller');
 
 const router = express.Router();
@@ -18,9 +19,9 @@ router.get('/allProds', getProducts);
 router.get('/:id', getOneProduct);
 
 // Update Product Route
-router.put('/:id', updateProduct);
+router.put('/:id', auth, updateProduct);
 
 // Delete Product Route
-router.delete('/:id', deleteProduct);
+router.delete('/:id', auth, deleteProduct);
 
 module.exports = router;

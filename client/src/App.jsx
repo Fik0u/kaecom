@@ -6,6 +6,8 @@ import ProductDetails from "./pages/ProductDetails";
 import CartPage from "./pages/CartPage";
 import Checkout from "./pages/Checkout";
 import AdminDashboard from "./pages/AdminDashboard";
+import LoginAdmin from "./pages/LoginAdmin";
+import ProtectedRoute from "./components/ProtectedRoute";
 import { getProducts } from "./services/productService";
 import Footer from "./components/Footer";
 import { ToastContainer } from "react-toastify";
@@ -99,9 +101,18 @@ function App() {
         />
 
         <Route
-          path="/admin"
-          element={<AdminDashboard />}
-        />
+  path="/admin-login"
+  element={<LoginAdmin />}
+/>
+
+        <Route
+  path="/admin"
+  element={
+    <ProtectedRoute>
+      <AdminDashboard />
+    </ProtectedRoute>
+  }
+/>
         
       </Routes>
       
