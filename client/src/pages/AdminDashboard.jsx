@@ -19,7 +19,7 @@ function AdminDashboard() {
   const getOrders = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:1999/api/orders/all"
+        `${import.meta.env.VITE_API_URL}/api/orders/all`
       );
 
       setOrders(res.data.orders);
@@ -32,7 +32,7 @@ function AdminDashboard() {
   const getProducts = async () => {
     try {
     const res = await axios.get(
-      "http://localhost:1999/api/products/allProds"
+      `${import.meta.env.VITE_API_URL}/api/products/allProds`
     );
 
     setProducts(res.data.prodsList);
@@ -67,7 +67,7 @@ const logout = () => {
   const updateStatus = async (id, status) => {
     try {
       await axios.put(
-        `http://localhost:1999/api/orders/updateStatus/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/orders/updateStatus/${id}`,
         { status }
       );
 
@@ -81,7 +81,7 @@ const logout = () => {
   const deleteProduct = async (id) => {
     try {
     await axios.delete(
-      `http://localhost:1999/api/products/${id}`
+      `${import.meta.env.VITE_API_URL}/api/products/${id}`
     );
 
     getProducts();
@@ -96,7 +96,7 @@ const logout = () => {
 
   try {
     await axios.post(
-      "http://localhost:1999/api/products/add",
+      `${import.meta.env.VITE_API_URL}/api/products/add`,
       form
     );
 
@@ -127,7 +127,7 @@ const logout = () => {
 
   try {
     await axios.put(
-      `http://localhost:1999/api/products/${editId}`,
+      `${import.meta.env.VITE_API_URL}/api/products/${editId}`,
       form
     );
 

@@ -39,7 +39,7 @@ function Checkout({ cart, setCart }) {
     };
 
  try {
-    await axios.post("http://localhost:1999/api/orders/create", orderData);
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/orders/create`, orderData);
 
     setCart([]);
 

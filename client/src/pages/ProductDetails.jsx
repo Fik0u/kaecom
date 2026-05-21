@@ -12,7 +12,7 @@ function ProductDetails({ addToCart }) {
     const fetchProduct = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:1999/api/products/${id}`
+          `${import.meta.env.VITE_API_URL}/api/products/${id}`
         );
 
         setProduct(res.data.prod);

@@ -23,7 +23,7 @@ function LoginAdmin() {
 
     try {
       const res = await axios.post(
-        "http://localhost:1999/api/admin/login",
+        `${import.meta.env.VITE_API_URL}/api/admin/login`,
         form
       );
 
