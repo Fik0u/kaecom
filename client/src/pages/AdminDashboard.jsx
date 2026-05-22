@@ -15,6 +15,7 @@ function AdminDashboard() {
   imageUrl: "",
 });
   const [editId, setEditId] = useState(null);
+  const token = localStorage.getItem("token");
 
   // FETCH ORDERS
   const getOrders = async () => {
@@ -69,7 +70,11 @@ const logout = () => {
     try {
       await axios.put(
         `${import.meta.env.VITE_API_URL}/api/orders/updateStatus/${id}`,
-        { status }
+        { status },
+        { headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       getOrders();
@@ -82,7 +87,11 @@ const logout = () => {
   const deleteProduct = async (id) => {
     try {
     await axios.delete(
-      `${import.meta.env.VITE_API_URL}/api/products/${id}`
+      `${import.meta.env.VITE_API_URL}/api/products/${id}`,
+      { headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
 
     getProducts();
@@ -98,7 +107,11 @@ const logout = () => {
   try {
     await axios.post(
       `${import.meta.env.VITE_API_URL}/api/products/add`,
-      form
+      form,
+      { headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
 
     getProducts();
@@ -131,7 +144,11 @@ const logout = () => {
   try {
     await axios.put(
       `${import.meta.env.VITE_API_URL}/api/products/${editId}`,
-      form
+      form,
+      { headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
 
     getProducts();
