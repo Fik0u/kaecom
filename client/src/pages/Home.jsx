@@ -1,33 +1,8 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { getProducts } from "../services/productService";
-import ProductCard from "../components/ProductCard";
 import "./Home.css";
 
-function Home({ addToCart }) {
-  const [products, setProducts] = useState([]);
-  const { name } = useParams();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await getProducts();
-
-      let allProducts = res.data.prodsList;
-
-      if (name) {
-        allProducts = allProducts.filter(
-          (p) =>
-            p.category?.trim().toLowerCase() === name?.trim().toLowerCase()
-        );
-      }
-
-      setProducts(allProducts);
-    };
-
-    fetchData();
-  }, [name]);
+function Home() {
 
   return (
     <div className="container">
@@ -116,27 +91,6 @@ function Home({ addToCart }) {
   </Link>
 
 </motion.div>
-
-      <h1>
-        {name ? `Catégorie : ${name}` : "Tous les produits"}
-      </h1>
-
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns:
-            "repeat(auto-fit, minmax(220px, 1fr))",
-          gap: "20px",
-        }}
-      >
-        {products.map((p) => (
-          <ProductCard
-            key={p._id}
-            product={p}
-            addToCart={addToCart}
-          />
-        ))}
-      </div>
     </div>
   );
 }

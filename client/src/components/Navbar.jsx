@@ -64,7 +64,7 @@ function Navbar({ cart, products }) {
 
   <div className="nav-center">
 
-    <Link to="/">Tous</Link>
+    <Link to="/products">Tous</Link>
 
     <Link to="/category/homme">
       Homme

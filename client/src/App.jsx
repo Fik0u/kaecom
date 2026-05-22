@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
+import CategoryPage from "./pages/CategoryPage";
 import ProductDetails from "./pages/ProductDetails";
 import CartPage from "./pages/CartPage";
 import Checkout from "./pages/Checkout";
@@ -75,7 +76,9 @@ function App() {
           element={<Home addToCart={addToCart} />}
         />
 
-        <Route path="/category/:name" element={<Home addToCart={addToCart} />} />
+        <Route path="/products" element={<CategoryPage addToCart={addToCart} />} />
+        
+        <Route path="/category/:name" element={<CategoryPage addToCart={addToCart} />} />
 
         <Route
   path="/product/:id"
