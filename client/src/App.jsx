@@ -16,7 +16,10 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => {
+  const saved = localStorage.getItem("cart");
+  return saved ? JSON.parse(saved) : [];
+});
   const [products, setProducts] = useState([]);
 
   // ADD TO CART
@@ -65,6 +68,10 @@ function App() {
 
   fetchProducts();
 }, []);
+
+useEffect(() => {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}, [cart]);
 
   return (
     <BrowserRouter>

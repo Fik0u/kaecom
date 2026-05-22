@@ -32,7 +32,7 @@ function ProductCard({ product }) {
         <div className="price">
           {product.price} DA
         </div>
-        <button> View Details </button>
+        <button> Voir Détails </button>
       </div>
 
     </motion.div>

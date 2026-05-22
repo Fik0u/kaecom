@@ -53,12 +53,18 @@ function Checkout({ cart, setCart }) {
   }
   };
 
-  return (
-    <div className="checkout-page container">
+return (
+  <div className="checkout-page container">
 
-      <h1>Checkout 🧾</h1>
+    <h1>Checkout 🧾</h1>
 
-      <form className="checkout-form" onSubmit={handleSubmit}>
+    <div className="checkout-layout">
+
+      {/* LEFT - FORM */}
+      <form
+        className="checkout-form"
+        onSubmit={handleSubmit}
+      >
 
         <input
           name="customerName"
@@ -88,8 +94,32 @@ function Checkout({ cart, setCart }) {
           required
         />
 
-        <div className="summary">
+        <button type="submit">
+          Confirmer la commande
+        </button>
+
+      </form>
+
+      {/* RIGHT - SUMMARY */}
+      <div className="checkout-summary">
+
+        <h2>Résumé commande</h2>
+
+        {cart.map((item) => (
+          <div
+            key={item._id}
+            className="summary-item"
+          >
+            <p>{item.name}</p>
+            <span>
+              {item.quantity} x {item.price} DA
+            </span>
+          </div>
+        ))}
+
+        <div className="total">
           Total :
+
           <strong>
             {cart.reduce(
               (acc, item) =>
@@ -99,14 +129,12 @@ function Checkout({ cart, setCart }) {
           </strong>
         </div>
 
-        <button type="submit">
-          Confirmer la commande
-        </button>
-
-      </form>
+      </div>
 
     </div>
-  );
+
+  </div>
+);
 }
 
 export default Checkout;
