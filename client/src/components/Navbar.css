@@ -221,6 +221,7 @@
   object-fit: cover;
 
   border-radius: 10px;
+  color: #111827;
 }
 
 .search-product-info {
@@ -233,7 +234,7 @@
 
 .search-product-info p {
   margin: 0;
-
+  color: #111827;
   font-weight: 600;
 }
 
@@ -241,4 +242,85 @@
   color: #6b7280;
 
   font-size: 14px;
+}
+
+.menu-toggle {
+  display: none;
+
+  background: transparent;
+
+  border: none;
+
+  color: white;
+
+  font-size: 1.5rem;
+
+  cursor: pointer;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+@media (max-width: 768px) {
+
+  .nav-center,
+  .search-box,
+  .cart-icon {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-right {
+    flex: unset;
+  }
+
+  .mobile-menu {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+    padding: 20px;
+
+    background: #111827;
+
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .mobile-menu a {
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 1rem;
+
+    font-weight: 500;
+  }
+
+  .mobile-search {
+  position: relative;
+}
+
+  .mobile-search input {
+    width: 100%;
+
+    padding: 10px;
+
+    border-radius: 8px;
+
+    border: none;
+
+    outline: none;
+
+  }
+
+  .nav-container {
+    padding: 15px 0;
+  }
+
 }

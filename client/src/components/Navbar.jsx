@@ -2,11 +2,13 @@ import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import "./Navbar.css";
 
 function Navbar({ cart, products }) {
   const [search, setSearch] = useState("");
   const [filtered, setFiltered] = useState([]);
+  const [menuOpen, setMenuOpen] = useState(false);
   const searchRef = useRef();
 
   useEffect(() => {
@@ -83,6 +85,14 @@ function Navbar({ cart, products }) {
   {/* RIGHT */}
 
   <div className="nav-right">
+    <button
+  className="menu-toggle"
+  onClick={() =>
+    setMenuOpen(!menuOpen)
+  }
+>
+  <FaBars />
+</button>
 
     <div className="search-box" ref={searchRef}>
 
@@ -152,6 +162,100 @@ function Navbar({ cart, products }) {
 
 </div>
 
+{menuOpen && (
+  <div className="mobile-menu">
+
+    <Link
+      to="/products"
+      onClick={() => setMenuOpen(false)}
+    >
+      Tous
+    </Link>
+
+    <Link
+      to="/category/homme"
+      onClick={() => setMenuOpen(false)}
+    >
+      Homme
+    </Link>
+
+    <Link
+      to="/category/femme"
+      onClick={() => setMenuOpen(false)}
+    >
+      Femme
+    </Link>
+
+    <Link
+      to="/category/chaussure"
+      onClick={() => setMenuOpen(false)}
+    >
+      Chaussures
+    </Link>
+
+    <Link
+      to="/cart"
+      onClick={() => setMenuOpen(false)}
+    >
+      Panier ({cart.length})
+    </Link>
+
+    {/* SEARCH */}
+
+<div className="mobile-search">
+
+  <input
+    type="text"
+    placeholder="Rechercher..."
+    value={search}
+    onChange={(e) =>
+      setSearch(e.target.value)
+    }
+  />
+
+  {filtered.length > 0 && (
+    <div className="search-dropdown">
+
+      {filtered.map((product) => (
+        <Link
+          to={`/product/${product._id}`}
+          key={product._id}
+          className="search-item"
+          onClick={() => {
+            setSearch("");
+            setFiltered([]);
+            setMenuOpen(false);
+          }}
+        >
+
+          <img
+            src={
+              product.imageUrl ||
+              "https://via.placeholder.com/60"
+            }
+            alt={product.name}
+          />
+
+          <div className="search-product-info">
+
+            <p>{product.name}</p>
+
+            <span>
+              {product.price} DA
+            </span>
+
+          </div>
+
+        </Link>
+      ))}
+
+    </div>
+  )}
+
+</div>
+
+  </div>
+)}
     </nav>
   );
 }
