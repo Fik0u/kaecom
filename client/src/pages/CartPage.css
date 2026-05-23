@@ -138,3 +138,64 @@
 .danger:hover {
   background: #dc2626;
 }
+
+@media (max-width: 768px) {
+
+  .cart-layout {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* ITEMS FULL WIDTH */
+  .cart-items {
+    width: 100%;
+  }
+
+  /* CART CARD STACK */
+  .cart-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  /* ACTIONS HORIZONTAL (plus clean mobile) */
+  .cart-actions {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .cart-actions button {
+    flex: 1;
+  }
+
+  /* SUMMARY FIXED BELOW */
+  .cart-summary {
+    position: relative;
+    top: unset;
+
+    width: 100%;
+  }
+
+  /* TEXT SCALE */
+  .cart-card h3 {
+    font-size: 1rem;
+  }
+
+  .cart-summary p {
+    font-size: 1rem;
+  }
+
+  .cart-summary h2 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .cart-summary {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    border-top: 1px solid #eee;
+  }
+}

@@ -96,3 +96,56 @@
   font-size: 1.2rem;
   font-weight: 600;
 }
+
+@media (max-width: 768px) {
+
+  .checkout-page {
+    padding: 20px 15px;
+  }
+
+  .checkout-page h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .checkout-layout {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* FORM FULL WIDTH */
+  .checkout-form {
+    width: 100%;
+    padding: 15px;
+  }
+
+  /* INPUTS PLUS COMPACTS */
+  .checkout-form input {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  /* BUTTON FULL WIDTH */
+  .checkout-form button {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  /* SUMMARY BELOW */
+  .checkout-summary {
+    width: 100%;
+    position: relative;
+    top: unset;
+
+    padding: 15px;
+  }
+
+  .summary-item {
+    font-size: 14px;
+  }
+
+  .total {
+    font-size: 1.1rem;
+  }
+}
